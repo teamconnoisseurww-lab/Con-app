@@ -2,6 +2,7 @@
 
 import { useCart } from '@/context/CartContext';
 import Header from '@/components/Header';
+import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
 
 export default function Cart() {
@@ -11,7 +12,7 @@ export default function Cart() {
     <>
       <Header />
 
-      <main className="container" style={{ paddingTop: '100px' }}>
+      <main className="container" style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100vh' }}>
         <div className="stack">
           <h1 className="h-title">Shopping Cart</h1>
 
@@ -164,6 +165,7 @@ export default function Cart() {
           )}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

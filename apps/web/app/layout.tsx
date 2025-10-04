@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import RouteLoader from '@/components/RouteLoader'
 import { CartProvider } from '@/context/CartContext'
+import { WishlistProvider } from '@/context/WishlistContext'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -31,9 +32,11 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body>
         <CartProvider>
-          <RouteLoader />
-          <div className="paint" aria-hidden="true" />
-          {children}
+          <WishlistProvider>
+            <RouteLoader />
+            <div className="paint" aria-hidden="true" />
+            {children}
+          </WishlistProvider>
         </CartProvider>
       </body>
     </html>

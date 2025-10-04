@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import Header from '@/components/Header';
+import Footer from '@/components/ui/Footer';
 import Link from 'next/link';
 
 export default function Checkout() {
@@ -37,7 +38,7 @@ export default function Checkout() {
     return (
       <>
         <Header />
-        <main className="container" style={{ paddingTop: '100px' }}>
+        <main className="container" style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100vh' }}>
           <div className="stack">
             <h1 className="h-title">Checkout</h1>
             <div style={{ textAlign: 'center', padding: 'clamp(40px, 8vh, 80px) 0' }}>
@@ -66,8 +67,8 @@ export default function Checkout() {
     <>
       <Header />
 
-      <main className="container" style={{ paddingTop: '100px' }}>
-        <div style={{ maxWidth: '640px', margin: '0 auto', width: '100%' }}>
+      <main className="container" style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100vh' }}>
+        <div style={{ maxWidth: '640px', margin: '0 auto', width: '100%', padding: '0 clamp(20px, 5vw, 24px)' }}>
           <h1 className="h-title">Checkout</h1>
 
           {/* Order Summary */}
@@ -230,6 +231,7 @@ export default function Checkout() {
           </form>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

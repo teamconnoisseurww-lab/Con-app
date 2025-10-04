@@ -1,16 +1,28 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import Footer from '@/components/ui/Footer';
 import { useCart } from '@/context/CartContext';
 
 export default function Collaborations() {
   const { addToCart } = useCart();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <Header />
 
-      <main className="container" style={{ minHeight: '100dvh' }}>
+      <main className="container" style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100dvh' }}>
         <div className="stack">
           {/* Poster-style layout with intensified paint */}
           <style jsx>{`
@@ -24,12 +36,46 @@ export default function Collaborations() {
                 radial-gradient(800px 400px at 90% 80%, var(--accent-15), transparent 50%);
               opacity: .24;
               filter: saturate(120%) contrast(110%);
+              transition: transform 0.1s ease-out;
+            }
+            
+            @keyframes fadeInUp {
+              from {
+                opacity: 0;
+                transform: translateY(20px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+            
+            .stagger-1 {
+              animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s both;
+            }
+            
+            .stagger-2 {
+              animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s both;
+            }
+            
+            .stagger-3 {
+              animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s both;
+            }
+            
+            .stagger-4 {
+              animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.7s both;
             }
           `}</style>
-          <div className="collab-paint" aria-hidden="true" />
+          <div 
+            className="collab-paint" 
+            aria-hidden="true"
+            style={{
+              transform: `translateY(${scrollY * 0.3}px)`
+            }}
+          />
 
           <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto' }}>
-            <span className="copy" style={{ 
+            <span className="copy stagger-1" style={{ 
               fontSize: '13px', 
               color: 'var(--accent)', 
               fontWeight: 600, 
@@ -41,7 +87,7 @@ export default function Collaborations() {
               Latest Collaboration
             </span>
 
-            <h1 style={{ 
+            <h1 className="stagger-2" style={{ 
               fontFamily: 'var(--serif)', 
               fontSize: 'clamp(36px, 6vw, 64px)', 
               fontWeight: 500, 
@@ -55,13 +101,12 @@ export default function Collaborations() {
               flexWrap: 'wrap'
             }}>
               <img 
-                src="/Con Script Logo copy.jpg" 
+                src="/con-no-background.png" 
                 alt="Signature" 
                 style={{ 
                   height: 'clamp(60px, 10vw, 120px)',
                   width: 'auto',
-                  objectFit: 'contain',
-                  mixBlendMode: 'multiply'
+                  objectFit: 'contain'
                 }}
               />
               <span>×</span>
@@ -104,7 +149,7 @@ export default function Collaborations() {
               </span>
             </h1>
 
-            <p className="copy" style={{ 
+            <p className="copy stagger-3" style={{ 
               fontSize: 'clamp(15px, 1.8vw, 18px)', 
               lineHeight: 1.7,
               marginBottom: 'clamp(24px, 4vh, 40px)',
@@ -115,7 +160,7 @@ export default function Collaborations() {
               Matching his style, energy, and vision.
             </p>
 
-            <div style={{ 
+            <div className="stagger-4" style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               gap: '12px', 
@@ -251,6 +296,7 @@ export default function Collaborations() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

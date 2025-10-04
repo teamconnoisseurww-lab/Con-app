@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/ui/Footer';
 
 export default function Maison() {
   const [email, setEmail] = useState('');
@@ -17,13 +18,13 @@ export default function Maison() {
     <>
       <Header />
 
-      <main className="container" style={{ paddingTop: '100px' }}>
+      <main className="container" style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100vh' }}>
         <div style={{ 
           textAlign: 'center',
           maxWidth: '460px',
           width: '100%',
           margin: '0 auto',
-          padding: '0 24px'
+          padding: '0 clamp(20px, 5vw, 24px)'
         }}>
           <p style={{
             fontFamily: 'var(--serif)',
@@ -115,6 +116,7 @@ export default function Maison() {
           </form>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

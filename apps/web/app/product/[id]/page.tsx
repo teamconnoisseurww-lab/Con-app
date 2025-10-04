@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import Header from '@/components/Header';
-import Link from 'next/link';
+import Footer from '@/components/ui/Footer';
 
 export default function ProductDetail() {
   const params = useParams();
@@ -33,11 +34,11 @@ export default function ProductDetail() {
     <>
       <Header />
 
-      <main style={{ paddingTop: '80px', minHeight: '100vh' }}>
+      <main style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100vh' }}>
         <div style={{ 
           maxWidth: '1400px', 
           margin: '0 auto', 
-          padding: 'clamp(20px, 4vw, 40px)'
+          padding: 'clamp(20px, 5vw, 40px)'
         }}>
           {/* Back button */}
           <Link 
@@ -52,8 +53,8 @@ export default function ProductDetail() {
               marginBottom: '24px',
               transition: 'opacity var(--dur) var(--ease)'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.opacity = '0.6'}
+            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => e.currentTarget.style.opacity = '1'}
           >
             ← Back to Collection
           </Link>
@@ -224,6 +225,7 @@ export default function ProductDetail() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/ui/Footer';
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -18,19 +19,19 @@ export default function Home() {
       <Header />
 
       {/* Loading content as main page */}
-      <main className="container" style={{ paddingTop: '100px' }}>
+      <main className="container" style={{ paddingTop: 'clamp(200px, 25vh, 220px)', minHeight: '100vh' }}>
         <div style={{ 
           textAlign: 'center',
-          maxWidth: '460px',
+          maxWidth: '380px',
           width: '100%',
           margin: '0 auto',
-          padding: '0 24px'
+          padding: '0 clamp(20px, 5vw, 24px)'
         }}>
           <p style={{
             fontFamily: 'var(--serif)',
-            fontSize: 'clamp(20px, 3vw, 28px)',
+            fontSize: 'clamp(16px, 3.5vw, 22px)',
             color: 'var(--ink)',
-            marginBottom: '48px',
+            marginBottom: 'clamp(24px, 4vh, 32px)',
             fontStyle: 'italic',
             fontWeight: 400
           }}>
@@ -40,12 +41,12 @@ export default function Home() {
           {/* Progress bar - stops at 20% */}
           <div style={{
             width: '100%',
-            height: '48px',
+            height: 'clamp(32px, 6vw, 36px)',
             border: '1px solid var(--ink)',
             borderRadius: '999px',
-            padding: '4px',
+            padding: '3px',
             background: 'transparent',
-            marginBottom: '80px'
+            marginBottom: 'clamp(32px, 6vh, 48px)'
           }}>
             <div style={{
               width: `${progress}%`,
@@ -75,10 +76,10 @@ export default function Home() {
                   width: '100%',
                   background: 'transparent',
                   border: 'none',
-                  padding: '14px 0',
+                  padding: 'clamp(10px, 2.5vw, 12px) 0',
                   color: 'var(--ink)',
                   fontFamily: 'var(--serif)',
-                  fontSize: '15px',
+                  fontSize: 'clamp(13px, 3vw, 14px)',
                   outline: 'none',
                   textAlign: 'center',
                   fontStyle: 'italic',
@@ -95,9 +96,9 @@ export default function Home() {
                 color: 'var(--bg)',
                 border: 'none',
                 borderRadius: '999px',
-                padding: '16px 48px',
+                padding: 'clamp(10px, 2.5vw, 12px) clamp(32px, 8vw, 40px)',
                 fontFamily: 'var(--serif)',
-                fontSize: '16px',
+                fontSize: 'clamp(13px, 3vw, 14px)',
                 fontWeight: 400,
                 fontStyle: 'italic',
                 cursor: 'pointer',
@@ -119,6 +120,7 @@ export default function Home() {
           </form>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
